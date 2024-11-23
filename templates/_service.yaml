@@ -1,0 +1,25 @@
+{{- define "base-deployment.service" -}}
+apiVersion: v1
+kind: Service
+metadata:
+  namespace: {{ .Values.namespace }}
+  labels:
+    app: {{ .Release.Name | printf "%s-service" }}
+    tier: {{ .Values.labels.tier }}
+  name: {{ .Release.Name | printf "%s-service" }}
+spec:
+  type: ClusterIP
+  ports:
+    - port: 80
+      name: "http"
+      protocol: TCP
+      targetPort: {{ .Values.service.targetPort }}
+    - port: 443
+      name: "https"
+      protocol: TCP
+      targetPort: {{ .Values.service.targetPort }}
+
+  selector:
+    app: {{ .Release.Name }}
+
+{{- end -}}

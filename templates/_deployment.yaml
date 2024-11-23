@@ -1,0 +1,43 @@
+{{- define "base-deployment.deployment" -}}
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: {{ .Release.Name }}
+  namespace: {{ .Values.namespace }}
+spec:
+  replicas: {{ .Values.deployment.replicas }}
+  selector:
+    matchLabels:
+      tier: {{ .Values.labels.tier }}
+      app: {{ .Release.Name }}
+  template:
+    metadata:
+      annotations:
+        unique_id: 11280641977-112
+      labels:
+        tier: {{ .Values.labels.tier }}
+        app: {{ .Release.Name }}
+    spec:
+      containers:
+        - name: {{ .Release.Name }}
+          image: {{ required "image" .Values.deployment.image }}
+          imagePullPolicy: Always
+          resources:
+            requests:
+              memory: {{ .Values.deployment.resources.memory }}
+              cpu: {{ .Values.deployment.resources.cpu }}
+            limits:
+              memory: "1024Mi"
+              cpu: "1500m"
+        {{ if eq .Values.deployment.command "" }}
+          command:
+            - {{ .Values.deployment.command }}
+        {{ end}}
+
+          envFrom:
+            - configMapRef:
+                name: {{ .Release.Name | printf "%s-config" }}
+            - secretRef:
+{{/*                # use the secret with the same name as the release as default if none is provided*/}}
+                name: {{  (.Values.secrets).name | default .Release.Name | printf "%s-secret"}}
+{{- end -}}

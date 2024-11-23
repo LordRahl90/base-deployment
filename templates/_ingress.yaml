@@ -1,0 +1,27 @@
+{{- define "base-deployment.ingress" -}}
+apiVersion: networking.k8s.io/v1
+kind: Ingress
+metadata:
+  annotations:
+    {{ $annotationLength:= len $.Values.ingress.annotations }}
+    {{ if gt $annotationLength 0 }}
+      {{ range $key, $value := $.Values.ingress.annotations }}
+    {{ $key }}: {{ $value }}
+     {{ end }}
+    {{ end }}
+
+  namespace: {{ .Values.namespace }}
+  name: {{ .Release.Name | printf "%s-ingress" }}
+spec:
+  rules:
+    - host: {{ .Values.ingress.host }}
+      http:
+        paths:
+          - pathType: Prefix
+            path: "/"
+            backend:
+              service:
+                name: {{ .Release.Name | printf "%s-service" }}
+                port:
+                  number: 80
+{{- end -}}

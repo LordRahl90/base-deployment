@@ -1,0 +1,13 @@
+{{- define "base-deployment.configmap.tpl" -}}
+apiVersion: v1
+kind: ConfigMap
+metadata:
+  namespace: {{ .Values.namespace }}
+  name: {{ .Release.Name | printf "%s-config" }}
+  labels:
+    tier: {{ .Values.labels.tier }}
+data: {}
+{{- end -}}
+{{- define "base-deployment.configmap" -}}
+{{- include "base-deployment.util.tpl" (append . "base-deployment.configmap.tpl") -}}
+{{- end -}}
