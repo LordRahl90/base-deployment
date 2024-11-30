@@ -129,6 +129,17 @@ data:
 ```
 This allows you to add as many values as you'd like to the configmap
 
+### Secrets
+
+This assumes that you have a secret with the same release name already defined in your cluster/namespace.
+If not, you can create one with the following command:
+
+```yaml
+kubectl create secret generic {{ .Release.Name }} --from-literal=MESSAGE={{ .Values.secrets.message }}
+```
+The secret can then be used in the deployment and service templates
+
 ## TODO:
 
 * Improve the readme and add more examples
+* Improve the deployment to not depend on secret if there isn't any.
