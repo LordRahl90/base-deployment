@@ -5,6 +5,7 @@ config:
     foo: bar
 
 secrets:
+  enabled: true
   name: shipments-secret
 
 labels:

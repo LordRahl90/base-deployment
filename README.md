@@ -120,7 +120,7 @@ The ingress also uses the service that was defined/created earlier.
 The configmap allows merging of configuration files.
 You create a `configmap.yaml` file and insert the following:
 
-```helm
+```yaml
 {{- include "base-deployment.configmap" . -}}
 {{- define "shipments.configmap" -}}
 data:

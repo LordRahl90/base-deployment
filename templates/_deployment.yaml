@@ -37,7 +37,9 @@ spec:
           envFrom:
             - configMapRef:
                 name: {{ .Release.Name | printf "%s-config" }}
+        {{ if eq .Values.secrets.enabled true }}
             - secretRef:
-{{/*                # use the secret with the same name as the release as default if none is provided*/}}
+                # use the secret with the same name as the release as default if none is provided
                 name: {{  (.Values.secrets).name | default .Release.Name | printf "%s-secret"}}
+        {{ end }}
 {{- end -}}
