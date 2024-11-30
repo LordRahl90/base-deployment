@@ -1,0 +1,14 @@
+apiVersion: v1
+entries:
+  base-deployment:
+  - apiVersion: v2
+    appVersion: 1.16.0
+    created: "2024-11-30T01:11:41.424267+01:00"
+    description: A Helm chart for Kubernetes
+    digest: 6fa4fec486ffcb8d60f81c024987c62d5dd5debfab9c491e4a0d2decaa274f72
+    name: base-deployment
+    type: library
+    urls:
+    - https://github.com/LordRahl90/base-deployment/base-deployment-0.1.0.tgz
+    version: 0.1.0
+generated: "2024-11-30T01:11:41.421827+01:00"
