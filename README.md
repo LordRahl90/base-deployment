@@ -120,11 +120,11 @@ The ingress also uses the service that was defined/created earlier.
 The configmap allows merging of configuration files.
 You create a `configmap.yaml` file and insert the following:
 
-```yaml
-{{ - include "base-deployment.configmap" . - }}
+```helm
+{{- include "base-deployment.configmap" . -}}
 {{- define "shipments.configmap" -}}
 data:
-  MESSAGE: "{{ .Values.configmap.message }}"
+  MESSAGE: "hello-world"`
 {{- end -}}
 ```
 This allows you to add as many values as you'd like to the configmap
