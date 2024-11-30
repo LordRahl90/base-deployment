@@ -55,17 +55,9 @@ jobs:
         with:
           ref: gh-pages
 
-      - name: Configure Git
-        run: |
-          git config user.name "$GITHUB_ACTOR"
-          git config user.email "$GITHUB_ACTOR@users.noreply.github.com"
-
-      - name: Merge main into gh-pages
-        run: |
-          git merge --no-edit origin/main
-
-      - name: Commit and push
-        run: |
-          git add .
-          git commit -m "Update gh-pages"
-          git push
+      - name: Merge staging -> uat
+        uses: devmasx/merge-branch@master
+        with:
+          type: now
+          target_branch: main
+          github_token: ${{ secrets.GITHUB_TOKEN }}
