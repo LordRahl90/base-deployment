@@ -60,4 +60,4 @@ jobs:
         with:
           type: now
           target_branch: main
-          github_token: ${{ secrets.GITHUB_TOKEN }}
+          github_token: ${{ secrets.G_ACCESS_TOKEN }}
