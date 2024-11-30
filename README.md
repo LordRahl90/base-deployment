@@ -25,15 +25,9 @@ See the [values file](values.yaml) for configuration options
 
 ## Installation
 
-The chart is available on [Helm Hub](https://hub.helm.sh/chart/stable/base-deployment)
-
-## Upgrading
-
-The chart is available on [Helm Hub](https://hub.helm.sh/chart/stable/base-deployment)
-
-## Contributing
-
-See [CONTRIBUTING.md](CONTRIBUTING.md)
+```yaml 
+helm repo add myrepo https://lordrahl90.github.io/base-deployment
+```
 
 ## TODO:
 
