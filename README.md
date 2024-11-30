@@ -16,7 +16,7 @@ The resource limits are capped at 1 CPU and 1512MB of memory. but requests are c
 ## Usage
 
 ```yaml 
-helm install base-deployment stable/base-deployment
+helm install base-deployment lordrahl90/base-deployment
 ```
 
 ## Configuration
