@@ -45,3 +45,27 @@ jobs:
           packages_with_index: true
         env:
          CR_TOKEN: "${{ secrets.G_ACCESS_TOKEN }}"
+
+  release-on-pages:
+    name: Release on Pages
+    runs-on: ubuntu-latest
+    needs: release
+    steps:
+      - uses: actions/checkout@v4
+        with:
+          ref: gh-pages
+
+      - name: Configure Git
+        run: |
+          git config user.name "$GITHUB_ACTOR"
+          git config user.email "$GITHUB_ACTOR@users.noreply.github.com"
+
+      - name: Merge main into gh-pages
+        run: |
+          git merge --no-edit origin/main
+
+      - name: Commit and push
+        run: |
+          git add .
+          git commit -m "Update gh-pages"
+          git push
