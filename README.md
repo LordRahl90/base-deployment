@@ -139,3 +139,36 @@ This could prevent the pod from starting up if the secret is not available.
 ## TODO:
 
 * Improve the readme and add more examples
+
+Sample values file:   
+```yaml
+
+namespace: staging
+config:
+  enabled: true
+  values:
+    foo: bar
+
+secrets:
+  enabled: false
+  name: shipments-secret
+
+labels:
+  tier: frontend
+
+deployment:
+  replicas: 10
+  image: "lordrahl/shipments"
+  resources:
+    memory: "64Mi"
+    cpu: "250m"
+
+service:
+  targetPort: 8080
+
+ingress:
+  host: "ing-shipments.lordrahl.ng"
+  annotations:
+    kubernetes.io/ingress.class: "alb"
+
+```
