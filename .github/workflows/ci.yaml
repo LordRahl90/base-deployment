@@ -1,12 +1,11 @@
 name: Lint
-
 on:
-    push:
-        branches:
-            - main
-    pull_request:
-        branches:
-            - main
+  push:
+    branches:
+      - main
+  pull_request:
+    branches:
+      - main
 
 jobs:
   lint:
@@ -21,7 +20,6 @@ jobs:
       - name: Lint
         run: |
           helm lint .
-
 
   release:
     name: Release
@@ -44,7 +42,7 @@ jobs:
           skip_existing: true
           packages_with_index: true
         env:
-         CR_TOKEN: "${{ secrets.G_ACCESS_TOKEN }}"
+          CR_TOKEN: "${{ secrets.G_ACCESS_TOKEN }}"
 
   release-on-pages:
     name: Release on Pages
